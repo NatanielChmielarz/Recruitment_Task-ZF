@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from 'axios'
 export default function Home() {
 
@@ -16,6 +16,17 @@ export default function Home() {
         setUsers(result.data);
       
     }
+   
+
+    const deleteUser = async (id) => {
+      await axios.delete(`http://localhost:8080/user/${id}`);
+      loadUsers();
+    };
+    const deletePlant = async (id) => {
+      await axios.delete(`http://localhost:8080/plant/${id}`);
+      loadUsers();
+    };
+    
   return (
     <div className='container'>
         <div className='py-4'>
@@ -38,10 +49,25 @@ export default function Home() {
               <td>{user.username}</td>
               <td>{user.email}</td>
               <td>
-                <button className='btn btn-primary mx-1'>View</button>
-                <button className='btn btn-outline-primary mx-1'>Edit</button>
-                <button className='btn btn-danger mx-1'>Delete</button>             
-              </td>
+                  <Link
+                    className="btn btn-primary mx-2"
+                    to={`/viewuser/${user.id}`}
+                  >
+                    View
+                  </Link>
+                  <Link
+                    className="btn btn-outline-primary mx-2"
+                    to={`/edituser/${user.id}`}
+                  >
+                    Edit
+                  </Link>
+                  <button
+                    className="btn btn-danger mx-2"
+                    onClick={() => deleteUser(user.id)}
+                  >
+                    Delete
+                  </button>
+                </td>
             </tr>
             {user.plants.map(plant => (
               
@@ -51,10 +77,25 @@ export default function Home() {
                 <td>Species: {plant.species}</td>
                 <td>Description: {plant.description}</td>
                 <td>
-                <button className='btn btn-primary mx-1'>View</button>
-                <button className='btn btn-outline-primary mx-1'>Edit</button>
-                <button className='btn btn-danger mx-1'>Delete</button>             
-              </td>
+                  <Link
+                    className="btn btn-primary mx-2"
+                    to={`/viewplants/${plant.id}`}
+                  >
+                    View
+                  </Link>
+                  <Link
+                    className="btn btn-outline-primary mx-2"
+                    to={`/editplants/${plant.id}`}
+                  >
+                    Edit
+                  </Link>
+                  <button
+                    className="btn btn-danger mx-2"
+                    onClick={() => deletePlant(plant.id)}
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))}
           </React.Fragment>

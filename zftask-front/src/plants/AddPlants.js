@@ -75,7 +75,7 @@ export default function AddPlant() {
                   <label htmlFor="user_id" className='form-label'>
                       user_Id
                   </label>
-                  <input type={"number"}
+                  <input type={"text"}
                   className="form-control"
                   placeholder='Enter your ID number'
                   name="user_id"

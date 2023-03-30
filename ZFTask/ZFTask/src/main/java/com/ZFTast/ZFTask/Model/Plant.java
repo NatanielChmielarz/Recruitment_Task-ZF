@@ -12,16 +12,16 @@ public class Plant {
     private String species;
     private String description;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id" ,nullable=false)
+    @JoinColumn(name = "user_id" )
     private  User user;
 
-    public Plant(String name, String species, String description, Long user_id) {
-        user= new User();
+    public Plant(String name, String species, String description, String user_id) {
+
         this.name = name;
         this.species = species;
         this.description = description;
-
-        this.user.setId(user_id);
+        user= new User();
+        this.user.setId(Long.parseLong(user_id));
     }
     private Plant(){}
     public Long getId() {
@@ -54,6 +54,10 @@ public class Plant {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setUser(User user) {
+        this.user=user;
     }
 }
 
