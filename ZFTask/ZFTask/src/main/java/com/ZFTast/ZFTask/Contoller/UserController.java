@@ -61,4 +61,7 @@ public class UserController {
         return "User with id " + id + " has been deleted successfully.";
     }
 
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository=userRepository;
+    }
 }
