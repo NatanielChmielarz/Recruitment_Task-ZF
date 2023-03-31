@@ -20,7 +20,11 @@ public class PlantController {
 
     @Autowired
     private PlantRepository plantRepository;
+    @Autowired
     private UserRepository userRepository;
+
+
+
     @PostMapping("/plant")
     public ResponseEntity<Plant> createPlant(@RequestBody PlantRequest request) {
         Plant plant = plantRepository.createPlant(request.getName(), request.getSpecies(), request.getDescription(), request.getUserId());
@@ -58,4 +62,7 @@ public class PlantController {
         return  "Plant with id "+id+" has been deleted success.";
     }
 
+    public void setPlantRepository(PlantRepository plantRepository) {
+        this.plantRepository = plantRepository;
+    }
 }

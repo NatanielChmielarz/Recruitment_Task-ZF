@@ -79,18 +79,6 @@ const{name,species,description,user_id}=plant
                   onChange={(e)=>onInputChange(e)}
               />
             </div>
-            <div className="mb-3">
-            <label htmlFor="user_id" className='form-label'>
-                      user_Id
-                  </label>
-                  <input type={"text"}
-                  className="form-control"
-                  placeholder='Enter your ID number'
-                  name="user_id"
-                  value={user_id}
-                  onChange={(e)=>onInputChange(e)}
-              />
-            </div>
             <button type="submit" className="btn btn-outline-primary">
               Submit
             </button>

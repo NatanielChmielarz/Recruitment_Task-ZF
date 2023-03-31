@@ -23,7 +23,7 @@ public class Plant {
         user= new User();
         this.user.setId(Long.parseLong(user_id));
     }
-    private Plant(){}
+    public Plant(){}
     public Long getId() {
         return plant_id;
     }
@@ -59,6 +59,14 @@ public class Plant {
     public void setUser(User user) {
         this.user=user;
     }
+
+    public String getUserid() {
+        return String.valueOf(user.getId());
+    }
+
+
+
+
 }
 
 

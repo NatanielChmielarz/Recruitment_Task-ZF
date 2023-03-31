@@ -9,9 +9,10 @@ public interface PlantRepository extends JpaRepository<Plant,Long> {
 
     @Transactional
     default Plant createPlant(String name, String species, String description, String userId) {
-        Plant plant = new Plant(name, species, description, userId);
+
         User user = new User();
         user.setId(Long.parseLong(userId));
+        Plant plant = new Plant(name, species, description, userId);
         plant.setUser(user);
         return save(plant);
     }
