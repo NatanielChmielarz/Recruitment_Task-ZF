@@ -15,7 +15,11 @@ public class User {
     private String email;
     @OneToMany(mappedBy = "user")
     private List<Plant> plants;
-    public User(){};
+
+    public User() {
+    }
+
+    ;
 
     public long getId() {
         return user_id;

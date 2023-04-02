@@ -1,6 +1,7 @@
 package com.ZFTast.ZFTask.Model;
 
 import jakarta.persistence.*;
+
 @Entity
 @Table(name = "plants")
 public class Plant {
@@ -12,18 +13,21 @@ public class Plant {
     private String species;
     private String description;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id" )
-    private  User user;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Plant(String name, String species, String description, String user_id) {
 
         this.name = name;
         this.species = species;
         this.description = description;
-        user= new User();
+        user = new User();
         this.user.setId(Long.parseLong(user_id));
     }
-    public Plant(){}
+
+    public Plant() {
+    }
+
     public Long getId() {
         return plant_id;
     }
@@ -57,14 +61,12 @@ public class Plant {
     }
 
     public void setUser(User user) {
-        this.user=user;
+        this.user = user;
     }
 
     public String getUserid() {
         return String.valueOf(user.getId());
     }
-
-
 
 
 }

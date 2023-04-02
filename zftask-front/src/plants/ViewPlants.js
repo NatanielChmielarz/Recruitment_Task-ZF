@@ -30,7 +30,7 @@ export default function ViewPlant() {
 
           <div className="card">
             <div className="card-header">
-              Details of user id : {plant.id}
+              Details of plant id : {plant.id}
               <ul className="list-group list-group-flush">
                 <li className="list-group-item">
                   <b>Name:</b>

@@ -123,7 +123,6 @@ class ControllerTest {
     }
 
 
-
     @Test
     public void testUpdatePlant() throws Exception {
         PlantRequest plantRequest = new PlantRequest();
@@ -166,6 +165,7 @@ class ControllerTest {
 
         verify(plantRepository, times(1)).deleteById(plantId);
     }
+
     @Test
     public void testGetAllUsers() throws Exception {
         List<User> users = new ArrayList<>();
@@ -194,6 +194,7 @@ class ControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(testUser.getName()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.email").value(testUser.getEmail()));
     }
+
     @Test
     public void testGetUserByIdUserNotFoundException() throws Exception {
         when(userRepository.findById(eq(testUser.getId()))).thenReturn(Optional.empty());
@@ -206,9 +207,6 @@ class ControllerTest {
     }
 
 
-
-
-
-    }
+}
 
 

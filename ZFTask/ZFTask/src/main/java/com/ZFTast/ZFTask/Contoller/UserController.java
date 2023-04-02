@@ -21,12 +21,12 @@ public class UserController {
     private PlantRepository plantRepository;
 
     @PostMapping("/api/user")
-    User newUser(@RequestBody User newUser){
+    User newUser(@RequestBody User newUser) {
         return userRepository.save(newUser);
     }
 
     @GetMapping(value = "/api/users")
-    List<User> getAllUsers(){
+    List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
@@ -48,14 +48,14 @@ public class UserController {
     }
 
     @DeleteMapping("/api/user/{id}")
-    String deleteUser(@PathVariable Long id){
+    String deleteUser(@PathVariable Long id) {
         Optional<User> userOptional = userRepository.findById(id);
-        if(userOptional.isEmpty()){
+        if (userOptional.isEmpty()) {
             throw new UserNotFoundException(id);
         }
         User user = userOptional.get();
         List<Plant> plants = user.getPlants();
-        if(!plants.isEmpty()){
+        if (!plants.isEmpty()) {
             plantRepository.deleteAll(plants);
         }
         userRepository.deleteById(id);
@@ -63,6 +63,6 @@ public class UserController {
     }
 
     public void setUserRepository(UserRepository userRepository) {
-        this.userRepository=userRepository;
+        this.userRepository = userRepository;
     }
 }

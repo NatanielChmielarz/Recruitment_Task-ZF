@@ -32,7 +32,6 @@ public class PlantRequest {
     }
 
 
-
     public void setUser_id(String user_id) {
         this.user_id = user_id;
     }
@@ -40,7 +39,6 @@ public class PlantRequest {
     public String getUserId() {
         return user_id;
     }
-
 
 
 }

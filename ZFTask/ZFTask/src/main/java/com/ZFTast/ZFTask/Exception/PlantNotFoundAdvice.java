@@ -8,17 +8,18 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.HashMap;
 import java.util.Map;
+
 @ControllerAdvice
 public class PlantNotFoundAdvice {
 
 
-        @ResponseBody
-        @ExceptionHandler(PlantNotFoundException.class)
-        @ResponseStatus(HttpStatus.NOT_FOUND)
-        public Map<String,String> exceptionHandler(PlantNotFoundException exception){
-            Map<String,String> errorMap=new HashMap<>();
-            errorMap.put("ErrorMessage", exception.getMessage());
-            return errorMap;
+    @ResponseBody
+    @ExceptionHandler(PlantNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public Map<String, String> exceptionHandler(PlantNotFoundException exception) {
+        Map<String, String> errorMap = new HashMap<>();
+        errorMap.put("ErrorMessage", exception.getMessage());
+        return errorMap;
 
     }
 }
