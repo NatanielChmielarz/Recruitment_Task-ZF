@@ -26,12 +26,12 @@ const{name,species,description,user_id}=plant
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(`http://localhost:8080/plant/${id}`, plant);
+    await axios.put(`http://localhost:8080/api/plant/${id}`, plant);
     navigate("/");
   };
 
   const loadPlant = async () => {
-    const result = await axios.get(`http://localhost:8080/plant/${id}`);
+    const result = await axios.get(`http://localhost:8080/api/plant/${id}`);
     setPlant(result.data);
   };
 

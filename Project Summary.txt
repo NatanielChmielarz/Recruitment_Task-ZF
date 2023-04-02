@@ -1,0 +1,5 @@
+Based on the project requirements, I created a sample application that allows adding users and their plants. The application has two tables, User and Plant, in a one-to-many relationship. The database structure is created upon program startup. The entire application connects to the database and allows CRUD operations through endpoints.
+
+A visual front-end was set up in React to allow users to use all the application's functionality. Tests were also created to verify the application's correctness.
+
+Unfortunately, there was a problem with using Swagger, so the documentation was manually created.

@@ -110,7 +110,7 @@ class ControllerTest {
 
         when(plantRepository.findAll()).thenReturn(plants);
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/plants"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/plants"))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.size()").value(2))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].name").value("Fiddle leaf fig"))
@@ -141,7 +141,7 @@ class ControllerTest {
         when(plantRepository.findById(1L)).thenReturn(Optional.of(existingPlant));
         when(plantRepository.save(any(Plant.class))).thenAnswer(i -> i.getArgument(0));
 
-        mockMvc.perform(MockMvcRequestBuilders.put("/plant/1")
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/plant/1")
                         .content(objectMapper.writeValueAsString(plantRequest))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
@@ -159,7 +159,7 @@ class ControllerTest {
         doNothing().when(plantRepository).deleteById(plantId);
         when(plantRepository.existsById(plantId)).thenReturn(true);
 
-        mockMvc.perform(delete("/plant/{id}", plantId))
+        mockMvc.perform(delete("/api/plant/{id}", plantId))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string("Plant with id " + plantId + " has been deleted success."))
                 .andDo(MockMvcResultHandlers.print());
@@ -172,7 +172,7 @@ class ControllerTest {
         users.add(testUser);
         when(userRepository.findAll()).thenReturn(users);
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/users")
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/users")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].id").value(testUser.getId()))
@@ -186,7 +186,7 @@ class ControllerTest {
     public void testGetUserById() throws Exception {
         when(userRepository.findById(eq(testUser.getId()))).thenReturn(Optional.of(testUser));
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/user/" + testUser.getId())
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/user/" + testUser.getId())
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(testUser.getId()))
@@ -198,7 +198,7 @@ class ControllerTest {
     public void testGetUserByIdUserNotFoundException() throws Exception {
         when(userRepository.findById(eq(testUser.getId()))).thenReturn(Optional.empty());
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/user/" + testUser.getId())
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/user/" + testUser.getId())
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound())
                 .andExpect(result -> assertTrue(result.getResolvedException() instanceof UserNotFoundException))

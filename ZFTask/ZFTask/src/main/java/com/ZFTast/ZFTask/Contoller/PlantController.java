@@ -7,6 +7,7 @@ import com.ZFTast.ZFTask.Model.PlantRequest;
 import com.ZFTast.ZFTask.Model.User;
 import com.ZFTast.ZFTask.Repository.PlantRepository;
 import com.ZFTast.ZFTask.Repository.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,24 +26,24 @@ public class PlantController {
 
 
 
-    @PostMapping("/plant")
+    @PostMapping("/api/plant")
     public ResponseEntity<Plant> createPlant(@RequestBody PlantRequest request) {
         Plant plant = plantRepository.createPlant(request.getName(), request.getSpecies(), request.getDescription(), request.getUserId());
         return ResponseEntity.ok(plant);
     }
 
-    @GetMapping("/plants")
+    @GetMapping("/api/plants")
     List<Plant> getAllPlants(){
         return plantRepository.findAll();
     }
 
-    @GetMapping("/plant/{id}")
+    @GetMapping("/api/plant/{id}")
     Plant getPlantById(@PathVariable Long id){
         return plantRepository.findById(id)
                 .orElseThrow(()->new PlantNotFoundException(id));
     }
 
-    @PutMapping("/plant/{id}")
+    @PutMapping("/api/plant/{id}")
     Plant updatePlant(@RequestBody Plant newPlant,@PathVariable Long id){
         return plantRepository.findById(id)
                 .map(plant -> {
@@ -53,7 +54,8 @@ public class PlantController {
                 }).orElseThrow(()->new PlantNotFoundException(id));
     }
 
-    @DeleteMapping("/plant/{id}")
+
+    @DeleteMapping("/api/plant/{id}")
     String deletePlant(@PathVariable Long id){
         if(!plantRepository.existsById(id)){
             throw new PlantNotFoundException(id);

@@ -12,18 +12,18 @@ export default function Home() {
     },[]);
 
     const loadUsers=async()=>{
-        const result=await axios.get("http://localhost:8080/users")
+        const result=await axios.get("http://localhost:8080/api/users")
         setUsers(result.data);
       
     }
    
 
     const deleteUser = async (id) => {
-      await axios.delete(`http://localhost:8080/user/${id}`);
+      await axios.delete(`http://localhost:8080/api/user/${id}`);
       loadUsers();
     };
     const deletePlant = async (id) => {
-      await axios.delete(`http://localhost:8080/plant/${id}`);
+      await axios.delete(`http://localhost:8080/api/plant/${id}`);
       loadUsers();
     };
     

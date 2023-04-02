@@ -5,6 +5,7 @@ import com.ZFTast.ZFTask.Model.Plant;
 import com.ZFTast.ZFTask.Model.User;
 import com.ZFTast.ZFTask.Repository.PlantRepository;
 import com.ZFTast.ZFTask.Repository.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,23 +20,23 @@ public class UserController {
     @Autowired
     private PlantRepository plantRepository;
 
-    @PostMapping("/user")
+    @PostMapping("/api/user")
     User newUser(@RequestBody User newUser){
         return userRepository.save(newUser);
     }
 
-    @GetMapping(value = "/users")
+    @GetMapping(value = "/api/users")
     List<User> getAllUsers(){
         return userRepository.findAll();
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/api/user/{id}")
     User getUserById(@PathVariable Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(id));
     }
 
-    @PutMapping("/user/{id}")
+    @PutMapping("/api/user/{id}")
     User updateUser(@RequestBody User newUser, @PathVariable Long id) {
         return userRepository.findById(id)
                 .map(user -> {
@@ -46,7 +47,7 @@ public class UserController {
                 }).orElseThrow(() -> new UserNotFoundException(id));
     }
 
-    @DeleteMapping("/user/{id}")
+    @DeleteMapping("/api/user/{id}")
     String deleteUser(@PathVariable Long id){
         Optional<User> userOptional = userRepository.findById(id);
         if(userOptional.isEmpty()){

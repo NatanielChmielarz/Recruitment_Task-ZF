@@ -22,7 +22,7 @@ export default function AddPlant() {
 
     const onSubmit=async (e)=>{
         e.preventDefault();
-        await axios.post("http://localhost:8080/plant",plant)
+        await axios.post("http://localhost:8080/api/plant",plant)
         navigate("/")
     }
 
